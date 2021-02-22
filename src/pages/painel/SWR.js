@@ -1,36 +1,26 @@
 
+import useAxios from '../../utils/useAxios';
 
-import { useState } from 'react';
-import useSWR from 'swr';
 
 export default function Index() {
 
-  const [state, setState] = useState([]); 
+  const { data, error } = useAxios('/api/users');
 
-  const url = '/api/users';
-
-  const { data, error } = useSWR(url, async url => {
-    const response = await fetch(url);
-    const dados = await response.json();
-    setState(dados.date);  
-
-    return { data, error };
-  })
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
-  // return <div>{data.date}</div>
 
   return (
     <>
+      <div>SWR</div><br/>
 
-    {state.map((item, index) => (
-      <p key={index}>{item.email}</p>
-    ))}   
+      <div>{data.date}</div>
 
-    {/* <div>SWR</div> */}
-
+      {data.data.map((item, index) => (
+        <p key={index}>{item.email}</p>
+      ))}
+      
    </>
   )
   

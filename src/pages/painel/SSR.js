@@ -1,14 +1,17 @@
-import { useState } from "react";
-import wait from '../api/wait';
 
-function SSR({ teste }) {
+import getUsers from '../api/getUsers';
 
+function SSR({ dados }) {
 
   return (
     <>
-    <div>SSR</div>
-    <br/>
-    <div>{teste.ip} - {teste.country}</div>
+      <div>SSR</div>
+      <br/>
+      <div>{dados.date}</div>
+
+      {dados.data.map((item, index) => (
+          <p key={index}>{item.email}</p>
+      ))} 
 
     </>
   )
@@ -16,13 +19,10 @@ function SSR({ teste }) {
 
 export async function getServerSideProps() {
   
-  // await fetch('http://localhost:3000/api/wait');
+  const response = await getUsers();
 
-  const response = await fetch('https://api.myip.com');
-  const data = await response.json();  
-  
   return { 
-    props: { teste: data },
+    props: { dados: response },
   }
 }
 
