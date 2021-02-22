@@ -1,18 +1,24 @@
 import { useState } from "react";
-import getUsers from '../api/getUsers';
+import getUsers from '../../utils/getUsers';
 
-function SSR({ users }) {
+function SSR({ dados }) {
 
   return (
     <>
       <div>SSG</div>
 
-      <div>{users.date}</div>
+      <div>{dados.date}</div>
 
+      <br/>
+
+      <div>Atividade: {dados.data.activity}</div>
+      <div>Tipo: {dados.data.type}</div>
+      <div>Participantes: {dados.data.participants}</div>
+      <div>Acessibilidade: {dados.data.accessibility}</div>
       
-      {users && users.data.map((item, index) => (
+      {/* {users && users.data.map((item, index) => (
         <p key={index}>{item.email}</p>
-      ))}  
+      ))}   */}
 
     </>
   )
@@ -23,7 +29,7 @@ export async function getStaticProps() {
   const response = await getUsers();
 
   return { 
-    props: { users: response },
+    props: { dados: response },
     revalidate:10
   }
 }

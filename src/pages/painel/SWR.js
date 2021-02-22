@@ -17,9 +17,13 @@ export default function Index() {
 
       <div>{data.date}</div>
 
-      {data.data.map((item, index) => (
-        <p key={index}>{item.email}</p>
-      ))}
+      <br/>
+
+      <div>Atividade: {data.dados.activity}</div>
+      <div>Tipo: {data.dados.type}</div>
+      <div>Participantes: {data.dados.participants}</div>
+      <div>Acessibilidade: {data.dados.accessibility}</div>
+
       
    </>
   )
