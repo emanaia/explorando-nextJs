@@ -7,7 +7,7 @@ export default function Index() {
 
   const [state, setState] = useState([]); 
 
-  const url = '/api/people';
+  const url = 'http://localhost:3000/api/people';
 
   const { data, error } = useSWR(url, async url => {
     const response = await fetch(url);
@@ -29,7 +29,7 @@ export default function Index() {
       <p key={index}>{item.email}</p>
     ))}   
 
-    {/* <div>oi</div> */}
+    {/* <div>SWR</div> */}
 
    </>
   )
