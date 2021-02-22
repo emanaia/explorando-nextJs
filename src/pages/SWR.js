@@ -27,7 +27,7 @@ export default function Index() {
     <>
 
     {state.map((item, index) => (
-      <p key={item.id}>{item.email}</p>
+      <p key={index}>{item.email}</p>
     ))}   
 
     {/* <div>oi</div> */}
