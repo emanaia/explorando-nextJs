@@ -1,6 +1,4 @@
-import useSWR from 'swr'
 import Person from '../components/Person'
-
 
 
 function index( { date } ) {
