@@ -7,7 +7,7 @@ export default function Index() {
 
   const [state, setState] = useState([]); 
 
-  const url = '/api/people';
+  const url = '/api/users';
 
   const { data, error } = useSWR(url, async url => {
     const response = await fetch(url);

@@ -2,7 +2,7 @@
 
 function index( { date } ) {
   // return <div>Data: {date}</div>
-  return <div>hELLO</div>
+  return <div>HELLO! Aqui é a porta de entrada</div>
 }
 
 // index.getInitialProps = async (ctx) => {

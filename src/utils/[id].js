@@ -1,12 +1,27 @@
-// import { people } from '../../../data'
+import { useRouter } from 'next/router'
+import useSWR from 'swr'
 
-// export default function personHandler({ query: { id } }, res) {
-//   const filtered = people.filter((p) => p.id === id)
+const fetcher = async (url) => {
+  const res = await fetch(url)
+  const data = await res.json()
 
-//   // User with id exists
-//   if (filtered.length > 0) {
-//     res.status(200).json(filtered[0])
-//   } else {
-//     res.status(404).json({ message: `User with id: ${id} not found.` })
-//   }
-// }
+  if (res.status !== 200) {
+    throw new Error(data.message)
+  }
+  return data
+}
+
+export default function Person() {
+  const { query } = useRouter()
+  const { data, error } = useSWR(
+    () => query.id && `/api/users/${query.id}`,
+    fetcher
+  )
+
+  if (error) return <div>{error.message}</div>
+  if (!data) return <div>Loading...</div>
+
+  return (
+    <div>User ID</div>
+  )
+}
