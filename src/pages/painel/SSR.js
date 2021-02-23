@@ -1,9 +1,11 @@
 
 import getUsers from '../../utils/getUsers';
+import {useRouter} from 'next/router';
 
 function SSR({ dados }) {
 
-  console.log(dados.data)
+  const router = useRouter();
+  // console.log(router)  
 
   return (
     <>
@@ -35,9 +37,7 @@ export async function getServerSideProps() {
   
   const response = await getUsers();
 
-  return { 
-    props: { dados: response },
-  }
+  return { props: { dados: response }}  
 }
 
 export default SSR
